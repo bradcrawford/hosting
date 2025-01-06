@@ -1,0 +1,19 @@
+services:
+  minecraft:
+    restart: unless-stopped
+    container_name: minecraft
+    image: itzg/minecraft-bedrock-server
+    environment:
+      EULA: "TRUE"
+      SERVER_NAME: "Home"
+      LEVEL_NAME: "Family"
+      GAME_MODE: "survival"
+      DIFFICULTY: "peaceful"
+      ALLOW_CHEATS: "false"
+      ONLINE_MODE: "false"
+    ports:
+      - "19132:19132/udp"
+    volumes:
+      - ./data:/data
+    stdin_open: true
+    tty: true
