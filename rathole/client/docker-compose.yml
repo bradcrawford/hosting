@@ -1,0 +1,13 @@
+services:
+  rathole-client:
+    network_mode: host
+    restart: unless-stopped
+    container_name: rathole-client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: --client /app/config.toml
+    volumes:
+      - ./config.toml:/app/config.toml
+    stdin_open: true
+    tty: true

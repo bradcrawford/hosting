@@ -1,0 +1,18 @@
+services:
+  rathole-server:
+    restart: unless-stopped
+    container_name: rathole-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: --server /app/config.toml
+    volumes:
+      - ./config.toml:/app/config.toml
+    stdin_open: true
+    tty: true
+    ports:
+      - 2333:2333
+      - 19132:19132
+      - 19132:19132/udp
+      - 19133:19133
+      - 19133:19133/udp

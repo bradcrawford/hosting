@@ -1,0 +1,23 @@
+[server]
+bind_addr = "0.0.0.0:2333"
+default_token = "<token>"
+
+[server.services.minecraft1]
+type = "udp"
+bind_addr = "0.0.0.0:19132"
+nodelay = true
+
+[server.services.minecraft2]
+type = "tcp"
+bind_addr = "0.0.0.0:19132"
+nodelay = true
+
+[server.services.minecraft3]
+type = "udp"
+bind_addr = "0.0.0.0:19133"
+nodelay = true
+
+[server.services.minecraft4]
+type = "tcp"
+bind_addr = "0.0.0.0:19133"
+nodelay = true

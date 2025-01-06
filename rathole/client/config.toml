@@ -1,0 +1,31 @@
+[client]
+remote_addr = "<ip-of-server>:2333" 
+default_token = "<token>"
+retry_interval = 1
+
+[client.transport]
+type = "tcp"
+
+[client.transport.tcp]
+keepalive_secs = 5
+keepalive_interval = 2
+
+[client.services.minecraft1]
+type = "udp"
+local_addr = "127.0.0.1:19132"
+nodelay = true
+
+[client.services.minecraft2]
+type = "tcp"
+local_addr = "127.0.0.1:19132"
+nodelay = true
+
+[client.services.minecraft3]
+type = "udp"
+local_addr = "127.0.0.1:19133"
+nodelay = true
+
+[client.services.minecraft4]
+type = "tcp"
+local_addr = "127.0.0.1:19133"
+nodelay = true
