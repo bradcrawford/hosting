@@ -1,0 +1,37 @@
+version: "3"
+services:
+  emby:
+    image: emby/embyserver_arm64v8
+    container_name: emby-server
+    environment:
+      - UID=1000
+      - GID=1000
+      - GIDLIST=
+      - TZ=Pacific/Auckland # Change this to your timezone
+    volumes:
+      - ./config:/config # Configuration directory
+      - ./cache:/cache # Transcoding temporary directory
+      - ./shows:/mnt/share1 # Media directory
+      - ./movies:/mnt/share2 # Media directory
+    ports:
+      - 8096:8096 # HTTP port
+      - 8920:8920 # HTTPS port
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/vchiq:/dev/vchiq # MMAL/OMX on Raspberry Pi
+      - /dev/video10:/dev/video10 # Hardware transcoding support
+      - /dev/video11:/dev/video11 # Hardware transcoding support
+      - /dev/video12:/dev/video12 # Hardware transcoding support
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 3G # Setting memory limit to 3GB to leave some headroom
+        reservations:
+          memory: 512M # Minimum memory reservation
+    networks:
+      - emby-network
+
+networks:
+  emby-network:
+    driver: bridge
